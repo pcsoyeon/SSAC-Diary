@@ -12,4 +12,66 @@ import Then
 
 final class WritingViewController: BaseViewController {
     
+    // MARK: - UI Property
+    
+    private var writingView = WritignView()
+    
+    // MARK: - Life Cycle
+    
+    override func loadView() {
+        self.view = writingView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    // MARK: - UI Method
+    
+    override func configure() {
+        configureButton()
+        configureTextField()
+        configureTextView()
+    }
+    
+    // MARK: - Custom Method
+    
+    private func configureButton() {
+        writingView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
+    }
+    
+    private func configureTextField() {
+        writingView.titleTextField.delegate = self
+        writingView.subTitleTextField.delegate = self
+    }
+    
+    private func configureTextView() {
+        writingView.contentTextView.delegate = self
+    }
+    
+    // MARK: - @objc
+    
+    @objc func touchUpSearchButton() {
+        print("사진 검색 화면으로 이동")
+    }
+}
+
+// MARK: - UITextField Delegate
+
+extension WritingViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderColor = UIColor.systemMint.cgColor
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        return true
+    }
+}
+
+// MARK: - UITextView Delegate
+
+extension WritingViewController: UITextViewDelegate {
+    
 }
