@@ -37,9 +37,9 @@ class SearchAPIManger {
                 case .continueStatus, .multipleChoice, .error:
                     print(statusCode)
                 case .badRequest:
-                    print("=================== 🔴 잘못된 요청 🔴 ===================", json)
+                    print("=================== 🔴 잘못된 요청 🔴 ===================")
                 case .internalServerError:
-                    print("=================== 🟡 서버 내부 오류 🟡 ===================", json)
+                    print("=================== 🟡 서버 내부 오류 🟡 ===================")
                 case .ok:
                     let imageList = json["items"].arrayValue.map { $0["link"].stringValue }
                     completionHandler(imageList)

@@ -110,8 +110,6 @@ extension ImageSearchViewController: UISearchBarDelegate {
 extension ImageSearchViewController {
     private func callRequest(keyword: String, page: Int = 1) {
         SearchAPIManger.shared.fetchImage(keyword: keyword, page: page) { imageList in
-            print("=================== 🟢 응답 데이터 🟢 ===================")
-            print(self.imageList)
             self.imageList = imageList
             self.imageSearchView.imageCollectionView.reloadData()
         }
