@@ -31,6 +31,25 @@ class ImageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Custom
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                contentView.layer.borderColor = UIColor.systemMint.cgColor
+                contentView.layer.borderWidth = 3
+            } else {
+                contentView.layer.borderWidth = 0
+            }
+        }
+    }
+        
+    
     // MARK: - UI Method
     
     private func configureUI() {
@@ -43,6 +62,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
             make.top.leading.trailing.bottom.equalToSuperview()
         }
     }
+    
+    // MARK: - Data Binding
     
     func setData(_ data: String) {
         let url = URL(string: data)
