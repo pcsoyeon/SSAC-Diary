@@ -15,8 +15,8 @@ final class ImageSearchViewController: BaseViewController {
     
     // MARK: - Property
     
-    private var currentPage: Int = 1
-    private var totalPage: Int = 0
+    private var startPage: Int = 1
+    private var totalCount: Int = 0
     
     private var imageList: [String] = []
     
@@ -48,6 +48,7 @@ final class ImageSearchViewController: BaseViewController {
     private func configureCollectionView() {
         imageSearchView.imageCollectionView.delegate = self
         imageSearchView.imageCollectionView.dataSource = self
+        imageSearchView.imageCollectionView.prefetchDataSource = self
         
         imageSearchView.imageCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
     }
@@ -130,13 +131,30 @@ extension ImageSearchViewController: UICollectionViewDataSource {
     }
 }
 
+extension ImageSearchViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if imageList.count - 1 == indexPath.item && imageList.count < totalCount {
+                startPage += 15
+                callRequest(keyword: imageSearchView.searchBar.text!)
+            }
+        }
+    }
+}
+
 // MARK: - UISearchBar Protocol
 
 extension ImageSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
-            callRequest(keyword: text, page: 1)
+            startPage = 1
+            imageList.removeAll()
+            
+            imageSearchView.imageCollectionView.scrollsToTop = true
+            
+            callRequest(keyword: text)
         }
+        
         view.endEditing(true)
     }
     
@@ -154,9 +172,10 @@ extension ImageSearchViewController: UISearchBarDelegate {
 // MARK: - Network
 
 extension ImageSearchViewController {
-    private func callRequest(keyword: String, page: Int = 1) {
-        SearchAPIManger.shared.fetchImage(keyword: keyword, page: page) { imageList in
-            self.imageList = imageList
+    private func callRequest(keyword: String) {
+        SearchAPIManger.shared.fetchImage(keyword: keyword, startPage: startPage) { imageList, totalCount in
+            self.imageList.append(contentsOf: imageList)
+            self.totalCount = totalCount
             self.imageSearchView.imageCollectionView.reloadData()
         }
     }

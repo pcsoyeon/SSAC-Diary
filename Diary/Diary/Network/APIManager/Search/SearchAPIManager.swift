@@ -15,12 +15,12 @@ class SearchAPIManger {
     
     private init() { }
     
-    typealias completionHandler = ([String]) -> ()
+    typealias completionHandler = ([String], (Int)) -> ()
     
-    func fetchImage(keyword: String, page: Int, completionHandler: @escaping completionHandler) {
+    func fetchImage(keyword: String, startPage: Int, completionHandler: @escaping completionHandler) {
         guard let keywordData = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        let url = EndPoint.image.requestURL + "query=\(keywordData)&display=30&start=\(page)"
+        let url = EndPoint.image.requestURL + "query=\(keywordData)&display=30&start=\(startPage)"
         
         let header: HTTPHeaders = ["Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8",
                                   "X-Naver-Client-Id" : APIKey.NAVER_ID,
@@ -42,7 +42,9 @@ class SearchAPIManger {
                     print("=================== 🟡 서버 내부 오류 🟡 ===================")
                 case .ok:
                     let imageList = json["items"].arrayValue.map { $0["link"].stringValue }
-                    completionHandler(imageList)
+                    let totalCount = json["total"].intValue
+                    
+                    completionHandler(imageList, totalCount)
                 }
                 
             case .failure(let error):
