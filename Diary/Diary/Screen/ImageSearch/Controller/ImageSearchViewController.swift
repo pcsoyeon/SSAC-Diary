@@ -12,6 +12,11 @@ final class ImageSearchViewController: BaseViewController {
     // MARK: - UI Property
     
     let imageSearchView = ImageSearchView()
+    
+    // MARK: - Property
+    
+    private var currentPage: Int = 1
+    private var totalPage: Int = 0
 
     // MARK: - Life Cycle
     
@@ -21,13 +26,13 @@ final class ImageSearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
     }
     
     // MARK: - UI Method
     
     override func configure() {
-        
+        configureCollectionView()
+        configureSearchBar()
     }
     
     // MARK: - Custom Method
@@ -38,9 +43,13 @@ final class ImageSearchViewController: BaseViewController {
         
         imageSearchView.imageCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
     }
+    
+    private func configureSearchBar() {
+        imageSearchView.searchBar.delegate = self
+    }
 }
 
-// MARK: - UICollectionView Delegate
+// MARK: - UICollectionView Protocol
 
 extension ImageSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -69,5 +78,37 @@ extension ImageSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
         return cell
+    }
+}
+
+// MARK: - UISearchBar Protocol
+
+extension ImageSearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            callRequest(keyword: text, page: 1)
+        }
+        
+        view.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        imageSearchView.imageCollectionView.reloadData()
+        searchBar.text = ""
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+}
+
+// MARK: - Network
+
+extension ImageSearchViewController {
+    private func callRequest(keyword: String, page: Int = 1) {
+        SearchAPIManger.shared.fetchImage(keyword: keyword, page: page) {
+            
+        }
     }
 }

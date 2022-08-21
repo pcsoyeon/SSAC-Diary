@@ -13,7 +13,7 @@ enum EndPoint {
     var requestURL: String {
         switch self {
         case .image:
-            return URL.makeEndPointString("/image")
+            return URL.makeEndPointString("/image.json?")
         }
     }
 }

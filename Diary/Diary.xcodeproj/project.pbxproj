@@ -34,6 +34,7 @@
 		92D4025028B29E9F0053F2F0 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024F28B29E9F0053F2F0 /* EndPoint.swift */; };
 		92D4025228B29F690053F2F0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 92D4025128B29F690053F2F0 /* .gitignore */; };
 		92D4025428B29F7A0053F2F0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4025328B29F7A0053F2F0 /* APIKey.swift */; };
+		92D4025728B2A1010053F2F0 /* SearchAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4025628B2A1010053F2F0 /* SearchAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		92D4024F28B29E9F0053F2F0 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		92D4025128B29F690053F2F0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		92D4025328B29F7A0053F2F0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		92D4025628B2A1010053F2F0 /* SearchAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		92D4020C28B284A10053F2F0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				92D4025528B2A0F30053F2F0 /* APIManager */,
 				92D4021228B285160053F2F0 /* Base */,
 			);
 			path = Network;
@@ -293,6 +296,22 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		92D4025528B2A0F30053F2F0 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				92D4025828B2A1050053F2F0 /* Search */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		92D4025828B2A1050053F2F0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				92D4025628B2A1010053F2F0 /* SearchAPIManager.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -380,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */,
+				92D4025728B2A1010053F2F0 /* SearchAPIManager.swift in Sources */,
 				92D4021C28B288350053F2F0 /* WritingViewController.swift in Sources */,
 				92D4024528B29A1F0053F2F0 /* ImageCollectionViewCell.swift in Sources */,
 				92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */,

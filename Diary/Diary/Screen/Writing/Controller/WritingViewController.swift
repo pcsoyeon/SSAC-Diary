@@ -59,7 +59,7 @@ final class WritingViewController: BaseViewController {
     }
 }
 
-// MARK: - UITextField Delegate
+// MARK: - UITextField Protocol
 
 extension WritingViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
