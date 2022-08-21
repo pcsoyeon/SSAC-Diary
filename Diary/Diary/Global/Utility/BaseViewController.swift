@@ -17,10 +17,17 @@ class BaseViewController: UIViewController {
     
     func configure() { }
     
-    func showAlertMessage(title: String, button: String) {
+    func showAlertMessage(title: String,
+                          leftButtonTitle: String,
+                          rightButtonTitle: String,
+                          leftButtonAction: @escaping (UIAlertAction) -> (),
+                          rightButtonAction: @escaping (UIAlertAction) -> ()) {
+        
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        let ok = UIAlertAction(title: button, style: .default)
-        alert.addAction(ok)
+        let leftButton = UIAlertAction(title: leftButtonTitle, style: .default, handler: leftButtonAction)
+        let rightButton = UIAlertAction(title: rightButtonTitle, style: .default, handler: rightButtonAction)
+        alert.addAction(leftButton)
+        alert.addAction(rightButton)
         present(alert, animated: true)
     }
 }
