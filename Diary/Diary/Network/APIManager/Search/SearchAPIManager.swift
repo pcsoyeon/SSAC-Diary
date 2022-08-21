@@ -15,7 +15,7 @@ class SearchAPIManger {
     
     private init() { }
     
-    typealias completionHandler = () -> ()
+    typealias completionHandler = ([String]) -> ()
     
     func fetchImage(keyword: String, page: Int, completionHandler: @escaping completionHandler) {
         guard let keywordData = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
@@ -37,11 +37,12 @@ class SearchAPIManger {
                 case .continueStatus, .multipleChoice, .error:
                     print(statusCode)
                 case .badRequest:
-                    print("잘못된 요청")
+                    print("=================== 🔴 잘못된 요청 🔴 ===================", json)
                 case .internalServerError:
-                    print("서버 내부 오류")
+                    print("=================== 🟡 서버 내부 오류 🟡 ===================", json)
                 case .ok:
-                    print(json)
+                    let imageList = json["items"].arrayValue.map { $0["link"].stringValue }
+                    completionHandler(imageList)
                 }
                 
             case .failure(let error):

@@ -17,6 +17,8 @@ final class ImageSearchViewController: BaseViewController {
     
     private var currentPage: Int = 1
     private var totalPage: Int = 0
+    
+    private var imageList: [String] = []
 
     // MARK: - Life Cycle
     
@@ -72,11 +74,12 @@ extension ImageSearchViewController: UICollectionViewDelegateFlowLayout {
 
 extension ImageSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return imageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.reuseIdentifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.setData(imageList[indexPath.item])
         return cell
     }
 }
@@ -88,7 +91,6 @@ extension ImageSearchViewController: UISearchBarDelegate {
         if let text = searchBar.text {
             callRequest(keyword: text, page: 1)
         }
-        
         view.endEditing(true)
     }
     
@@ -107,8 +109,11 @@ extension ImageSearchViewController: UISearchBarDelegate {
 
 extension ImageSearchViewController {
     private func callRequest(keyword: String, page: Int = 1) {
-        SearchAPIManger.shared.fetchImage(keyword: keyword, page: page) {
-            
+        SearchAPIManger.shared.fetchImage(keyword: keyword, page: page) { imageList in
+            print("=================== 🟢 응답 데이터 🟢 ===================")
+            print(self.imageList)
+            self.imageList = imageList
+            self.imageSearchView.imageCollectionView.reloadData()
         }
     }
 }
