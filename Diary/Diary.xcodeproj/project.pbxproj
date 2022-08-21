@@ -20,6 +20,11 @@
 		92D4022628B288B40053F2F0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022528B288B40053F2F0 /* Alamofire */; };
 		92D4022928B288C20053F2F0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022828B288C20053F2F0 /* SwiftyJSON */; };
 		92D4022C28B288D00053F2F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022B28B288D00053F2F0 /* Kingfisher */; };
+		92D4022E28B289980053F2F0 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4022D28B289980053F2F0 /* WritingView.swift */; };
+		92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023028B289CA0053F2F0 /* BaseView.swift */; };
+		92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023328B28AC20053F2F0 /* DiaryTextField.swift */; };
+		92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */; };
+		92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023728B28C320053F2F0 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +38,11 @@
 		92D4020428B284690053F2F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92D4021428B2854C0053F2F0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		92D4021B28B288350053F2F0 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
+		92D4022D28B289980053F2F0 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
+		92D4023028B289CA0053F2F0 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		92D4023328B28AC20053F2F0 /* DiaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextField.swift; sourceTree = "<group>"; };
+		92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		92D4023728B28C320053F2F0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,7 @@
 		92D4020D28B284A50053F2F0 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				92D4023228B28A8F0053F2F0 /* DesignSystem */,
 				92D4021628B285AE0053F2F0 /* Extension */,
 				92D4021328B2851B0053F2F0 /* Utility */,
 			);
@@ -160,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				92D4021428B2854C0053F2F0 /* BaseViewController.swift */,
+				92D4023028B289CA0053F2F0 /* BaseView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -167,6 +179,8 @@
 		92D4021628B285AE0053F2F0 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */,
+				92D4023728B28C320053F2F0 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -192,6 +206,7 @@
 		92D4021928B2881E0053F2F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92D4022D28B289980053F2F0 /* WritingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +216,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		92D4023228B28A8F0053F2F0 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				92D4023328B28AC20053F2F0 /* DiaryTextField.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,11 +311,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */,
 				92D4021C28B288350053F2F0 /* WritingViewController.swift in Sources */,
+				92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */,
 				92D401FB28B284680053F2F0 /* ViewController.swift in Sources */,
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
+				92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */,
 				92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */,
+				92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */,
+				92D4022E28B289980053F2F0 /* WritingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
