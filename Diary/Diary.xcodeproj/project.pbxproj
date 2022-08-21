@@ -26,6 +26,9 @@
 		92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */; };
 		92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023728B28C320053F2F0 /* UIView+Extension.swift */; };
 		92D4024128B293490053F2F0 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024028B293490053F2F0 /* ImageSearchViewController.swift */; };
+		92D4024328B2976A0053F2F0 /* ImageSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024228B2976A0053F2F0 /* ImageSearchView.swift */; };
+		92D4024528B29A1F0053F2F0 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024428B29A1F0053F2F0 /* ImageCollectionViewCell.swift */; };
+		92D4024828B29AFD0053F2F0 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024728B29AFD0053F2F0 /* ReusableViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		92D4023728B28C320053F2F0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		92D4024028B293490053F2F0 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
+		92D4024228B2976A0053F2F0 /* ImageSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchView.swift; sourceTree = "<group>"; };
+		92D4024428B29A1F0053F2F0 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		92D4024728B29AFD0053F2F0 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 		92D4020D28B284A50053F2F0 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				92D4024628B29AEE0053F2F0 /* Protocol */,
 				92D4023228B28A8F0053F2F0 /* DesignSystem */,
 				92D4021628B285AE0053F2F0 /* Extension */,
 				92D4021328B2851B0053F2F0 /* Utility */,
@@ -250,6 +257,8 @@
 		92D4023E28B293300053F2F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92D4024228B2976A0053F2F0 /* ImageSearchView.swift */,
+				92D4024428B29A1F0053F2F0 /* ImageCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +268,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		92D4024628B29AEE0053F2F0 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				92D4024728B29AFD0053F2F0 /* ReusableViewProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,13 +365,16 @@
 			files = (
 				92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */,
 				92D4021C28B288350053F2F0 /* WritingViewController.swift in Sources */,
+				92D4024528B29A1F0053F2F0 /* ImageCollectionViewCell.swift in Sources */,
 				92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */,
 				92D401FB28B284680053F2F0 /* ViewController.swift in Sources */,
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
 				92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */,
 				92D4024128B293490053F2F0 /* ImageSearchViewController.swift in Sources */,
+				92D4024328B2976A0053F2F0 /* ImageSearchView.swift in Sources */,
 				92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */,
+				92D4024828B29AFD0053F2F0 /* ReusableViewProtocol.swift in Sources */,
 				92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */,
 				92D4022E28B289980053F2F0 /* WritingView.swift in Sources */,
 			);

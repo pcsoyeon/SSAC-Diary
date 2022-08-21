@@ -42,7 +42,7 @@ final class WritignView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
-    // MARK: - Custom Method
+    // MARK: - UI Method
     
     override func configureUI() {
         addSubviews([imageView,
