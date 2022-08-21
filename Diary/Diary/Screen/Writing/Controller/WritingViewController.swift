@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Kingfisher
 import SnapKit
 import Then
 
@@ -55,6 +56,10 @@ final class WritingViewController: BaseViewController {
     
     @objc func touchUpSearchButton() {
         let viewController = ImageSearchViewController()
+        viewController.doneButtonActionHandler = { imagURL in
+            guard let url = imagURL else { return }
+            self.writingView.imageView.kf.setImage(with: URL(string: url))
+        }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

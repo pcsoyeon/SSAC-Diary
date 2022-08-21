@@ -19,6 +19,11 @@ final class ImageSearchViewController: BaseViewController {
     private var totalPage: Int = 0
     
     private var imageList: [String] = []
+    
+    private var isImageSelected: Bool = false
+    private var selectedImage: String = ""
+    
+    var doneButtonActionHandler: ((String?) -> ())?
 
     // MARK: - Life Cycle
     
@@ -35,6 +40,7 @@ final class ImageSearchViewController: BaseViewController {
     override func configure() {
         configureCollectionView()
         configureSearchBar()
+        configureNavigationBarUI()
     }
     
     // MARK: - Custom Method
@@ -49,9 +55,49 @@ final class ImageSearchViewController: BaseViewController {
     private func configureSearchBar() {
         imageSearchView.searchBar.delegate = self
     }
+    
+    private func configureNavigationBarUI() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
+    }
+    
+    // MARK: - @objc
+    
+    @objc func touchUpDoneButton() {
+        if isImageSelected {
+            doneButtonActionHandler?(selectedImage)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            showAlertMessage(title: "이미지를 선택하지 않았어요!",
+                             leftButtonTitle: "취소",
+                             rightButtonTitle: "나가기") { _ in
+                
+            } rightButtonAction: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+
+        }
+    }
 }
 
 // MARK: - UICollectionView Protocol
+
+extension ImageSearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else {
+            return true
+        }
+        
+        if cell.isSelected {
+            isImageSelected = false
+            collectionView.deselectItem(at: indexPath, animated: false)
+            return false
+        } else {
+            isImageSelected = true
+            selectedImage = imageList[indexPath.item]
+            return true
+        }
+    }
+}
 
 extension ImageSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
