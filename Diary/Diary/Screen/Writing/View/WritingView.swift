@@ -21,7 +21,7 @@ final class WritignView: BaseView {
     
     var searchButton = UIButton().then {
         $0.setTitle("검색", for: .normal)
-        $0.setTitleColor(.orange, for: .normal)
+        $0.setTitleColor(.systemPink, for: .normal)
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
