@@ -25,6 +25,7 @@
 		92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023328B28AC20053F2F0 /* DiaryTextField.swift */; };
 		92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */; };
 		92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023728B28C320053F2F0 /* UIView+Extension.swift */; };
+		92D4024128B293490053F2F0 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4024028B293490053F2F0 /* ImageSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		92D4023328B28AC20053F2F0 /* DiaryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTextField.swift; sourceTree = "<group>"; };
 		92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		92D4023728B28C320053F2F0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		92D4024028B293490053F2F0 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		92D4020B28B2849C0053F2F0 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				92D4023C28B2931E0053F2F0 /* ImageSearch */,
 				92D4021728B288050053F2F0 /* Writing */,
 				92D4020F28B284BF0053F2F0 /* Main */,
 			);
@@ -226,6 +229,38 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
+		92D4023C28B2931E0053F2F0 /* ImageSearch */ = {
+			isa = PBXGroup;
+			children = (
+				92D4023F28B293330053F2F0 /* Model */,
+				92D4023E28B293300053F2F0 /* View */,
+				92D4023D28B293290053F2F0 /* Controller */,
+			);
+			path = ImageSearch;
+			sourceTree = "<group>";
+		};
+		92D4023D28B293290053F2F0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				92D4024028B293490053F2F0 /* ImageSearchViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		92D4023E28B293300053F2F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92D4023F28B293330053F2F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +353,7 @@
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
 				92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */,
+				92D4024128B293490053F2F0 /* ImageSearchViewController.swift in Sources */,
 				92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */,
 				92D4023828B28C320053F2F0 /* UIView+Extension.swift in Sources */,
 				92D4022E28B289980053F2F0 /* WritingView.swift in Sources */,

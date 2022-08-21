@@ -29,6 +29,8 @@ final class WritingViewController: BaseViewController {
     // MARK: - UI Method
     
     override func configure() {
+        title = "글쓰기"
+        
         configureButton()
         configureTextField()
         configureTextView()
@@ -52,7 +54,8 @@ final class WritingViewController: BaseViewController {
     // MARK: - @objc
     
     @objc func touchUpSearchButton() {
-        print("사진 검색 화면으로 이동")
+        let viewController = ImageSearchViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

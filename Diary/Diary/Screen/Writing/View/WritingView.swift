@@ -54,7 +54,8 @@ final class WritignView: BaseView {
     
     override func setConstraints() {
         imageView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(self.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(250)
         }
         
