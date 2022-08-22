@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     // MARK: - UI Property
     
     private var tableView = UITableView().then {
-        $0.backgroundColor = .gray
+        $0.backgroundColor = .clear
     }
     
     // MARK: - Property
@@ -36,9 +36,10 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
         tableView.reloadData()
     }
+    
+    // MARK: - UI Method
     
     private func configureUI() {
         view.backgroundColor = .white
@@ -59,12 +60,16 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.reuseIdentifier)
     }
+    
+    // MARK: - Custom Method
     
     private func getRealmData() {
         tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
     }
+    
+    // MARK: - @objc
     
     @objc func touchUpPlusButton() {
         let viewController = WritingViewController()
@@ -73,8 +78,12 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - UITableView Protocol
+
 extension MainViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -83,8 +92,8 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = "\(tasks[indexPath.row].diaryTitle)"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseIdentifier) as? MainTableViewCell else { return UITableViewCell() }
+        cell.setData(tasks[indexPath.row])
         return cell
     }
 }
