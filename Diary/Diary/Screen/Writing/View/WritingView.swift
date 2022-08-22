@@ -50,6 +50,12 @@ final class WritignView: BaseView {
         $0.layer.cornerRadius = 8
     }
     
+    var saveButton = UIButton().then {
+        $0.setTitle("저장", for: .normal)
+        $0.backgroundColor = .systemMint
+        $0.layer.cornerRadius = 8
+    }
+    
     // MARK: - UI Method
     
     override func configureUI() {
@@ -59,7 +65,8 @@ final class WritignView: BaseView {
                                  searchButton,
                                  titleTextField,
                                  subTitleTextField,
-                                 contentTextView])
+                                 contentTextView,
+                                 saveButton])
     }
     
     override func setConstraints() {
@@ -102,6 +109,12 @@ final class WritignView: BaseView {
             make.top.equalTo(subTitleTextField.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(500)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.top.equalTo(contentTextView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(44)
             make.bottom.equalToSuperview()
         }
     }

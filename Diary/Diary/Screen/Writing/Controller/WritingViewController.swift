@@ -8,6 +8,7 @@
 import UIKit
 
 import Kingfisher
+import RealmSwift // 1.
 import SnapKit
 import Then
 
@@ -17,6 +18,10 @@ final class WritingViewController: BaseViewController {
     
     private var writingView = WritignView()
     
+    // MARK: - Property
+    
+    private let localRealm = try! Realm() // 2.
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -25,6 +30,7 @@ final class WritingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Realm is located at: ", localRealm.configuration.fileURL!)
     }
     
     // MARK: - UI Method
@@ -41,6 +47,7 @@ final class WritingViewController: BaseViewController {
     
     private func configureButton() {
         writingView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
+        writingView.saveButton.addTarget(self, action: #selector(touchUpSaveButton), for: .touchUpInside)
     }
     
     private func configureTextField() {
@@ -61,6 +68,16 @@ final class WritingViewController: BaseViewController {
             self.writingView.imageView.kf.setImage(with: URL(string: url))
         }
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func touchUpSaveButton() {
+        let task = UserDiary(diaryTitle: "오늘의 일기", diaryContent: "오늘도 최이준은 하라고 했다.", diaryDate: Date(), regDate: Date(), photo: nil) // record
+        
+        try! localRealm.write {
+            localRealm.add(task) // create
+            print("Succeed")
+            dismiss(animated: true)
+        }
     }
 }
 
