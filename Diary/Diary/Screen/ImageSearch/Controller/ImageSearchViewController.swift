@@ -58,7 +58,8 @@ final class ImageSearchViewController: BaseViewController {
     }
     
     private func configureNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(touchUpCancelButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
     }
     
     // MARK: - @objc
@@ -76,6 +77,15 @@ final class ImageSearchViewController: BaseViewController {
                 self.navigationController?.popViewController(animated: true)
             }
 
+        }
+    }
+    
+    @objc func touchUpCancelButton() {
+        showAlertMessage(title: "이미지를 선택하지 않고 나가면 저장이 되지 않아요",
+                         leftButtonTitle: "취소",
+                         rightButtonTitle: "나가기") { _ in
+        } rightButtonAction: { _ in
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
