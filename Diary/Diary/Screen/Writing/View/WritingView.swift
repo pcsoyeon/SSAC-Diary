@@ -27,6 +27,23 @@ final class WritignView: BaseView {
         $0.backgroundColor = .systemGray5
     }
     
+    private lazy var buttonStackView = UIStackView().then {
+        $0.addArrangedSubview(galleryButton)
+        $0.addArrangedSubview(searchButton)
+        $0.alignment = .fill
+        $0.axis = .horizontal
+        $0.distribution = .equalSpacing
+        $0.spacing = 5
+    }
+    
+    var galleryButton = UIButton().then {
+        $0.setTitle("갤러리", for: .normal)
+        $0.setTitleColor(.systemMint, for: .normal)
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+    }
+    
     var searchButton = UIButton().then {
         $0.setTitle("검색", for: .normal)
         $0.setTitleColor(.systemPink, for: .normal)
@@ -62,7 +79,7 @@ final class WritignView: BaseView {
         self.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews([imageView,
-                                 searchButton,
+                                 buttonStackView,
                                  titleTextField,
                                  subTitleTextField,
                                  contentTextView,
@@ -86,10 +103,9 @@ final class WritignView: BaseView {
             make.height.equalTo(250)
         }
         
-        searchButton.snp.makeConstraints { make in
+        buttonStackView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(35)
             make.bottom.equalTo(imageView.snp.bottom).inset(15)
-            make.width.equalTo(55)
             make.height.equalTo(30)
         }
         

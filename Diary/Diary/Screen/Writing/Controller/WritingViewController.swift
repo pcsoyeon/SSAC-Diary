@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 import Kingfisher
 import RealmSwift // 1.
@@ -52,6 +53,7 @@ final class WritingViewController: BaseViewController {
     }
     
     private func configureButton() {
+        writingView.galleryButton.addTarget(self, action: #selector(touchUpGalleryButton), for: .touchUpInside)
         writingView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
         writingView.saveButton.addTarget(self, action: #selector(touchUpSaveButton), for: .touchUpInside)
     }
@@ -66,6 +68,16 @@ final class WritingViewController: BaseViewController {
     }
     
     // MARK: - @objc
+    
+    @objc func touchUpGalleryButton() {
+        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        config.filter = .images
+        config.selectionLimit = 1
+        let controller = PHPickerViewController(configuration: config)
+        
+        controller.delegate = self
+        self.present(controller, animated: true, completion: nil)
+    }
     
     @objc func touchUpSearchButton() {
         let viewController = ImageSearchViewController()
@@ -126,8 +138,42 @@ extension WritingViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - UITextView Delegate
+// MARK: - UITextView Protocol
 
 extension WritingViewController: UITextViewDelegate {
     
+}
+
+// MARK: - PHPicker Protocol
+
+extension WritingViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard !results.isEmpty else {
+            return
+        }
+        
+        let imageResult = results[0]
+        
+        if let assetId = imageResult.assetIdentifier {
+            let assetResults = PHAsset.fetchAssets(withLocalIdentifiers: [assetId], options: nil)
+            DispatchQueue.main.async {
+                if let date = assetResults.firstObject?.creationDate {
+                    self.writingView.subTitleTextField.text = self.dateFormatter.string(from: date)
+                }
+            }
+        }
+        if imageResult.itemProvider.canLoadObject(ofClass: UIImage.self) {
+            imageResult.itemProvider.loadObject(ofClass: UIImage.self) { (selectedImage, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    DispatchQueue.main.async {
+                        self.writingView.imageView.image = selectedImage as? UIImage
+                    }
+                }
+                
+            }
+        }
+    }
 }
