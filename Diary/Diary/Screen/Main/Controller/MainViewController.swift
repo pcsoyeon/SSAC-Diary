@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
     // MARK: - @objc
     
     @objc func touchUpPlusButton() {
-        let viewController = WritingViewController()
+        let viewController = UINavigationController(rootViewController: WritingViewController())
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
@@ -100,7 +100,6 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
-        // 크기가 작으면 스와이프 버튼에서 title이 안보일 수 있다.
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -133,9 +132,9 @@ extension MainViewController: UITableViewDelegate {
             // 2. 데이터가 변경되었으니 다시 realm에서 데이터 갖고 오기 > didSet에서 일괄적 형태로 갱신
             self.fetchRealmData()
         }
+        
         favorite.backgroundColor = .systemMint
         
-        // realm 데이터 기준
         let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
         favorite.image = UIImage(systemName: image)
         
@@ -150,7 +149,10 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
-            print("delete button clicked")
+            try! self.localRealm.write {
+                self.localRealm.delete(self.tasks[indexPath.row])
+            }
+            self.fetchRealmData()
         }
         delete.backgroundColor = .red
         

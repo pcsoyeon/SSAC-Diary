@@ -22,6 +22,10 @@ final class WritingViewController: BaseViewController {
     
     private let localRealm = try! Realm() // 2.
     
+    private let dateFormatter = DateFormatter().then {
+        $0.dateFormat = "YYYY.MM.dd"
+    }
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -71,12 +75,28 @@ final class WritingViewController: BaseViewController {
     }
     
     @objc func touchUpSaveButton() {
-        let task = UserDiary(diaryTitle: "오늘의 일기", diaryContent: "오늘도 최이준은 하라고 했다.", diaryDate: Date(), regDate: Date(), photo: nil) // record
+        guard let title = writingView.titleTextField.text else { return }
+        guard let diaryDate = writingView.subTitleTextField.text else { return }
+        guard let context = writingView.contentTextView.text else { return }
         
-        try! localRealm.write {
-            localRealm.add(task) // create
-            print("Succeed")
-            dismiss(animated: true)
+        if title == "" || diaryDate == "" || context == "" {
+            showAlertMessage(title: "내용을 모두 작성하지 않았어요!",
+                             leftButtonTitle: "취소",
+                             rightButtonTitle: "나가기") { _ in
+            } rightButtonAction: { _ in
+                self.dismiss(animated: true)
+            }
+        } else {
+            let task = UserDiary(diaryTitle: title,
+                                 diaryContent: context,
+                                 diaryDate: dateFormatter.date(from: diaryDate) ?? Date(),
+                                 regDate: Date(),
+                                 photo: nil)
+            
+            try! localRealm.write {
+                localRealm.add(task)
+                dismiss(animated: true)
+            }
         }
     }
 }
