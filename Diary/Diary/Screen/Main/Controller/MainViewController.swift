@@ -104,27 +104,23 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-//            do {
-//                try self.localRealm.write {
-//                    print("어쩌고")
-//                }
-//            } catch {
-//                print("오류")
-//            }
-            
-            try! self.localRealm.write {
-                // 하나의 레코드에서 특정 컬럼 하나만 변경
-                self.tasks[indexPath.row].favorite.toggle()
-                
-                // 하나의 테이블에 특정 컬럼 전체 값을 변경
-//                self.tasks.setValue(true, forKey: "favorite")
-                
-                // 하나의 레코드에서 여러 컬럼을 변경
-//                self.localRealm.create(UserDiary.self,
-//                                       value: ["objectId" : self.tasks[indexPath.row].objectId,
-//                                               "diaryContent" : "내용뿡뿡",
-//                                               "diaryTitle" : "제목뿡뿡"],
-//                                       update: .modified)
+            do {
+                try self.localRealm.write {
+                    // 하나의 레코드에서 특정 컬럼 하나만 변경
+                    self.tasks[indexPath.row].favorite.toggle()
+                    
+                    // 하나의 테이블에 특정 컬럼 전체 값을 변경
+//                    self.tasks.setValue(true, forKey: "favorite")
+                    
+                    // 하나의 레코드에서 여러 컬럼을 변경
+//                    self.localRealm.create(UserDiary.self,
+//                                           value: ["objectId" : self.tasks[indexPath.row].objectId,
+//                                                   "diaryContent" : "내용뿡뿡",
+//                                                   "diaryTitle" : "제목뿡뿡"],
+//                                           update: .modified)
+                }
+            } catch {
+                print("ERROR")
             }
             
             // reload 방법
@@ -149,10 +145,15 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
-            try! self.localRealm.write {
-                self.localRealm.delete(self.tasks[indexPath.row])
+            do {
+                try self.localRealm.write {
+                    self.localRealm.delete(self.tasks[indexPath.row])
+                }
+                
+                self.fetchRealmData()
+            } catch {
+                print("ERROR")
             }
-            self.fetchRealmData()
         }
         delete.backgroundColor = .red
         
