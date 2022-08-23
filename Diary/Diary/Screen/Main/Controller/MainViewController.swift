@@ -23,20 +23,26 @@ class MainViewController: UIViewController {
     
     let localRealm = try! Realm()
     
-    var tasks: Results<UserDiary>!
+    var tasks: Results<UserDiary>! {
+        didSet {
+            tableView.reloadData()
+            print("Tasks Changed")
+        }
+    }
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Realm is located at: ", localRealm.configuration.fileURL!)
+        
         configureUI()
         configureTableView()
-        getRealmData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        getRealmData()
     }
     
     // MARK: - UI Method
@@ -54,6 +60,10 @@ class MainViewController: UIViewController {
     
     private func configureNavigationBarUI() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(touchUpPlusButton))
+        
+        let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(touchUpSortButton))
+        let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(touchUpFilterButton))
+        self.navigationItem.leftBarButtonItems = [sortButton, filterButton]
     }
     
     private func configureTableView() {
@@ -75,6 +85,15 @@ class MainViewController: UIViewController {
         let viewController = WritingViewController()
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
+    }
+    
+    @objc func touchUpSortButton() {
+        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regDate", ascending: true)
+    }
+    
+    @objc func touchUpFilterButton() {
+        // realm filter query, NSPredicate
+        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '똥'")
     }
 }
 
