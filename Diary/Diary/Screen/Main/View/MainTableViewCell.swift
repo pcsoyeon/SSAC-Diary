@@ -15,7 +15,7 @@ class MainTableViewCell: UITableViewCell {
     // MARK: - UI Property
     
     private var titleLabel = UILabel().then {
-        $0.textColor = .systemMint
+        $0.textColor = .darkGray
         $0.font = .boldSystemFont(ofSize: 13)
     }
     
