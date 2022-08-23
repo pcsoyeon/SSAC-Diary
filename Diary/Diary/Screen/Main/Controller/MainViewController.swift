@@ -53,10 +53,10 @@ class MainViewController: UIViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
-        configureNavigationBarUI()
+        configureNavigationBar()
     }
     
-    private func configureNavigationBarUI() {
+    private func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(touchUpPlusButton))
         
         let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(touchUpSortButton))

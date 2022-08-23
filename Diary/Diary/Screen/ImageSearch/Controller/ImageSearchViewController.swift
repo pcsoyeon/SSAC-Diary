@@ -40,7 +40,7 @@ final class ImageSearchViewController: BaseViewController {
     override func configure() {
         configureCollectionView()
         configureSearchBar()
-        configureNavigationBarUI()
+        configureNavigationBar()
     }
     
     // MARK: - Custom Method
@@ -57,7 +57,7 @@ final class ImageSearchViewController: BaseViewController {
         imageSearchView.searchBar.delegate = self
     }
     
-    private func configureNavigationBarUI() {
+    private func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
     }
     

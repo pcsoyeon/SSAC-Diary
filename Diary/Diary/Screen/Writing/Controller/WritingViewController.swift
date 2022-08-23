@@ -41,13 +41,15 @@ final class WritingViewController: BaseViewController {
     
     override func configure() {
         title = "글쓰기"
-        
+        configureNavigationBar()
         configureButton()
         configureTextField()
         configureTextView()
     }
     
-    // MARK: - Custom Method
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(touchUpCancelButton))
+    }
     
     private func configureButton() {
         writingView.searchButton.addTarget(self, action: #selector(touchUpSearchButton), for: .touchUpInside)
@@ -97,6 +99,15 @@ final class WritingViewController: BaseViewController {
                 localRealm.add(task)
                 dismiss(animated: true)
             }
+        }
+    }
+    
+    @objc func touchUpCancelButton() {
+        showAlertMessage(title: "작성 중에 나가면 저장이 되지 않아요",
+                         leftButtonTitle: "취소",
+                         rightButtonTitle: "나가기") { _ in
+        } rightButtonAction: { _ in
+            self.dismiss(animated: true)
         }
     }
 }
