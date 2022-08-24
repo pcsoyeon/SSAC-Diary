@@ -21,7 +21,8 @@ final class ImageSearchViewController: BaseViewController {
     private var imageList: [String] = []
     
     private var isImageSelected: Bool = false
-    private var selectedImage: String = ""
+    private var selectedImageURL: String = ""
+    private var selectedImage: UIImage?
     
     var doneButtonActionHandler: ((String?) -> ())?
 
@@ -66,7 +67,7 @@ final class ImageSearchViewController: BaseViewController {
     
     @objc func touchUpDoneButton() {
         if isImageSelected {
-            doneButtonActionHandler?(selectedImage)
+            doneButtonActionHandler?(selectedImageURL)
             self.navigationController?.popViewController(animated: true)
         } else {
             showAlertMessage(title: "이미지를 선택하지 않았어요!",
@@ -98,13 +99,15 @@ extension ImageSearchViewController: UICollectionViewDelegate {
             return true
         }
         
+//        selectedImage = cell.imageView.image
+        
         if cell.isSelected {
             isImageSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
             return false
         } else {
             isImageSelected = true
-            selectedImage = imageList[indexPath.item]
+            selectedImageURL = imageList[indexPath.item]
             return true
         }
     }

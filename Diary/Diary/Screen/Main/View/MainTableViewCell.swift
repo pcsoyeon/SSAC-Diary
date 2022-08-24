@@ -33,6 +33,10 @@ class MainTableViewCell: UITableViewCell {
         $0.dateFormat = "YY.MM.dd"
     }
     
+    private var contentImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFill
+    }
+    
     // MARK: - Initializer
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,7 +52,7 @@ class MainTableViewCell: UITableViewCell {
     // MARK: - UI Method
     
     private func configureUI() {
-        contentView.addSubviews([titleLabel, contentLabel, dateLabel])
+        contentView.addSubviews([titleLabel, contentLabel, dateLabel, contentImageView])
     }
     
     private func setConstraints() {
@@ -66,6 +70,13 @@ class MainTableViewCell: UITableViewCell {
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(8)
+        }
+        
+        contentImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(20)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(60)
         }
     }
     

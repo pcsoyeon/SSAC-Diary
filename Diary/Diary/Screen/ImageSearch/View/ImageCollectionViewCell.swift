@@ -15,7 +15,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Property
     
-    private var imageView = UIImageView().then {
+    var imageView = UIImageView().then {
         $0.contentMode = .scaleToFill
     }
     

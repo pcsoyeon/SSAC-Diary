@@ -69,6 +69,8 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.reuseIdentifier)
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     // MARK: - Custom Method
@@ -96,10 +98,6 @@ class MainViewController: UIViewController {
 // MARK: - UITableView Protocol
 
 extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             do {
