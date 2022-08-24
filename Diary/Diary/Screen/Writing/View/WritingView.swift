@@ -32,24 +32,20 @@ final class WritignView: BaseView {
         $0.addArrangedSubview(searchButton)
         $0.alignment = .fill
         $0.axis = .horizontal
-        $0.distribution = .equalSpacing
+        $0.distribution = .fillProportionally
         $0.spacing = 5
     }
     
     var galleryButton = UIButton().then {
         $0.setTitle("갤러리", for: .normal)
-        $0.setTitleColor(.systemMint, for: .normal)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .systemMint
     }
     
     var searchButton = UIButton().then {
         $0.setTitle("검색", for: .normal)
-        $0.setTitleColor(.systemPink, for: .normal)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .systemPink
     }
     
     var titleTextField = DiaryTextField().then {
@@ -57,7 +53,7 @@ final class WritignView: BaseView {
     }
     
     var subTitleTextField = DiaryTextField().then {
-        $0.setPlaceholder(placeholder: "소제목을 입력해주세요.")
+        $0.setPlaceholder(placeholder: "날짜를 입력해주세요.")
     }
     
     var contentTextView = UITextView().then {
@@ -106,6 +102,7 @@ final class WritignView: BaseView {
         buttonStackView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(35)
             make.bottom.equalTo(imageView.snp.bottom).inset(15)
+            make.width.equalTo(100)
             make.height.equalTo(30)
         }
         

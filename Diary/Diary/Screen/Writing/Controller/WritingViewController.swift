@@ -27,6 +27,12 @@ final class WritingViewController: BaseViewController {
         $0.dateFormat = "YYYY.MM.dd"
     }
     
+    private lazy var datePicker = UIDatePicker().then {
+        $0.preferredDatePickerStyle = .wheels
+        $0.datePickerMode = .date
+        $0.locale = Locale(identifier: "ko")
+    }
+    
     // MARK: - Life Cycle
     
     override func loadView() {
@@ -46,10 +52,12 @@ final class WritingViewController: BaseViewController {
         configureButton()
         configureTextField()
         configureTextView()
+        setToolBar()
+        configureDatePickerView()
     }
     
     private func configureNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(touchUpCancelButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(touchUpCancelButton))
     }
     
     private func configureButton() {
@@ -61,10 +69,42 @@ final class WritingViewController: BaseViewController {
     private func configureTextField() {
         writingView.titleTextField.delegate = self
         writingView.subTitleTextField.delegate = self
+        
+        writingView.subTitleTextField.inputView = datePicker
     }
     
     private func configureTextView() {
         writingView.contentTextView.delegate = self
+    }
+    
+    private func setToolBar() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 375, height: 44))
+        toolBar.sizeToFit()
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.backgroundColor = .systemGray6
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(touchUpDoneButton))
+        toolBar.items = [flexibleSpace, doneButton]
+        
+        writingView.titleTextField.inputAccessoryView = toolBar
+        writingView.contentTextView.inputAccessoryView = toolBar
+    }
+    
+    private func configureDatePickerView() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 375, height: 44))
+        toolBar.sizeToFit()
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.backgroundColor = .systemGray6
+        
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(touchUpDateDoneButton))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        
+        writingView.subTitleTextField.inputAccessoryView = toolBar
     }
     
     // MARK: - @objc
@@ -121,6 +161,15 @@ final class WritingViewController: BaseViewController {
         } rightButtonAction: { _ in
             self.dismiss(animated: true)
         }
+    }
+    
+    @objc func touchUpDoneButton() {
+        view.endEditing(true)
+    }
+    
+    @objc func touchUpDateDoneButton() {
+        writingView.subTitleTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
     }
 }
 
