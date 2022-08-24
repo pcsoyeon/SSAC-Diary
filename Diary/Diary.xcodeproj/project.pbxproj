@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		920C39BF28B5A5E4004B30AF /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920C39BE28B5A5E4004B30AF /* Transition+Extension.swift */; };
+		920C39C228B5A86F004B30AF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39C128B5A86F004B30AF /* Realm */; };
+		920C39C428B5A86F004B30AF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39C328B5A86F004B30AF /* RealmSwift */; };
+		920C39C728B5A88A004B30AF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39C628B5A88A004B30AF /* SnapKit */; };
+		920C39CA28B5A89F004B30AF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39C928B5A89F004B30AF /* Kingfisher */; };
+		920C39CD28B5A8B2004B30AF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39CC28B5A8B2004B30AF /* SwiftyJSON */; };
+		920C39D028B5A8C5004B30AF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39CF28B5A8C5004B30AF /* Alamofire */; };
+		920C39D328B5A8D5004B30AF /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 920C39D228B5A8D5004B30AF /* Then */; };
 		92126A2028B3833200E43F7E /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92126A1F28B3833200E43F7E /* MainTableViewCell.swift */; };
 		92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F628B284680053F2F0 /* AppDelegate.swift */; };
 		92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F828B284680053F2F0 /* SceneDelegate.swift */; };
@@ -17,11 +24,6 @@
 		92D4020328B284690053F2F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D4020128B284690053F2F0 /* LaunchScreen.storyboard */; };
 		92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4021428B2854C0053F2F0 /* BaseViewController.swift */; };
 		92D4021C28B288350053F2F0 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4021B28B288350053F2F0 /* WritingViewController.swift */; };
-		92D4022028B2889A0053F2F0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4021F28B2889A0053F2F0 /* SnapKit */; };
-		92D4022328B288A60053F2F0 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022228B288A60053F2F0 /* Then */; };
-		92D4022628B288B40053F2F0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022528B288B40053F2F0 /* Alamofire */; };
-		92D4022928B288C20053F2F0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022828B288C20053F2F0 /* SwiftyJSON */; };
-		92D4022C28B288D00053F2F0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4022B28B288D00053F2F0 /* Kingfisher */; };
 		92D4022E28B289980053F2F0 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4022D28B289980053F2F0 /* WritingView.swift */; };
 		92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023028B289CA0053F2F0 /* BaseView.swift */; };
 		92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4023328B28AC20053F2F0 /* DiaryTextField.swift */; };
@@ -37,8 +39,6 @@
 		92D4025228B29F690053F2F0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 92D4025128B29F690053F2F0 /* .gitignore */; };
 		92D4025428B29F7A0053F2F0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4025328B29F7A0053F2F0 /* APIKey.swift */; };
 		92D4025728B2A1010053F2F0 /* SearchAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4025628B2A1010053F2F0 /* SearchAPIManager.swift */; };
-		92D4025D28B317670053F2F0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4025C28B317670053F2F0 /* Realm */; };
-		92D4025F28B317670053F2F0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 92D4025E28B317670053F2F0 /* RealmSwift */; };
 		92D4026228B31A0E0053F2F0 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D4026128B31A0E0053F2F0 /* RealmModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,13 +78,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92D4025D28B317670053F2F0 /* Realm in Frameworks */,
-				92D4022628B288B40053F2F0 /* Alamofire in Frameworks */,
-				92D4025F28B317670053F2F0 /* RealmSwift in Frameworks */,
-				92D4022028B2889A0053F2F0 /* SnapKit in Frameworks */,
-				92D4022928B288C20053F2F0 /* SwiftyJSON in Frameworks */,
-				92D4022328B288A60053F2F0 /* Then in Frameworks */,
-				92D4022C28B288D00053F2F0 /* Kingfisher in Frameworks */,
+				920C39CA28B5A89F004B30AF /* Kingfisher in Frameworks */,
+				920C39C728B5A88A004B30AF /* SnapKit in Frameworks */,
+				920C39C428B5A86F004B30AF /* RealmSwift in Frameworks */,
+				920C39D328B5A8D5004B30AF /* Then in Frameworks */,
+				920C39D028B5A8C5004B30AF /* Alamofire in Frameworks */,
+				920C39CD28B5A8B2004B30AF /* SwiftyJSON in Frameworks */,
+				920C39C228B5A86F004B30AF /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,13 +366,13 @@
 			);
 			name = Diary;
 			packageProductDependencies = (
-				92D4021F28B2889A0053F2F0 /* SnapKit */,
-				92D4022228B288A60053F2F0 /* Then */,
-				92D4022528B288B40053F2F0 /* Alamofire */,
-				92D4022828B288C20053F2F0 /* SwiftyJSON */,
-				92D4022B28B288D00053F2F0 /* Kingfisher */,
-				92D4025C28B317670053F2F0 /* Realm */,
-				92D4025E28B317670053F2F0 /* RealmSwift */,
+				920C39C128B5A86F004B30AF /* Realm */,
+				920C39C328B5A86F004B30AF /* RealmSwift */,
+				920C39C628B5A88A004B30AF /* SnapKit */,
+				920C39C928B5A89F004B30AF /* Kingfisher */,
+				920C39CC28B5A8B2004B30AF /* SwiftyJSON */,
+				920C39CF28B5A8C5004B30AF /* Alamofire */,
+				920C39D228B5A8D5004B30AF /* Then */,
 			);
 			productName = Diary;
 			productReference = 92D401F328B284680053F2F0 /* Diary.app */;
@@ -403,12 +403,12 @@
 			);
 			mainGroup = 92D401EA28B284680053F2F0;
 			packageReferences = (
-				92D4021E28B2889A0053F2F0 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				92D4022128B288A60053F2F0 /* XCRemoteSwiftPackageReference "Then" */,
-				92D4022428B288B40053F2F0 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				92D4022728B288C20053F2F0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				92D4022A28B288D00053F2F0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				92D4025B28B317670053F2F0 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				920C39C028B5A86F004B30AF /* XCRemoteSwiftPackageReference "realm-swift" */,
+				920C39C528B5A88A004B30AF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				920C39C828B5A89F004B30AF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				920C39CB28B5A8B2004B30AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				920C39CE28B5A8C5004B30AF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				920C39D128B5A8D5004B30AF /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 92D401F428B284680053F2F0 /* Products */;
 			projectDirPath = "";
@@ -679,7 +679,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		92D4021E28B2889A0053F2F0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		920C39C028B5A86F004B30AF /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		920C39C528B5A88A004B30AF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -687,31 +695,7 @@
 				kind = branch;
 			};
 		};
-		92D4022128B288A60053F2F0 /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		92D4022428B288B40053F2F0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		92D4022728B288C20053F2F0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		92D4022A28B288D00053F2F0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		920C39C828B5A89F004B30AF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -719,51 +703,67 @@
 				kind = branch;
 			};
 		};
-		92D4025B28B317670053F2F0 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		920C39CB28B5A8B2004B30AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				minimumVersion = 5.0.0;
+			};
+		};
+		920C39CE28B5A8C5004B30AF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		920C39D128B5A8D5004B30AF /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		92D4021F28B2889A0053F2F0 /* SnapKit */ = {
+		920C39C128B5A86F004B30AF /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 92D4021E28B2889A0053F2F0 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		92D4022228B288A60053F2F0 /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92D4022128B288A60053F2F0 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
-		92D4022528B288B40053F2F0 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92D4022428B288B40053F2F0 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		92D4022828B288C20053F2F0 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92D4022728B288C20053F2F0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-		92D4022B28B288D00053F2F0 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92D4022A28B288D00053F2F0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		92D4025C28B317670053F2F0 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 92D4025B28B317670053F2F0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 920C39C028B5A86F004B30AF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		92D4025E28B317670053F2F0 /* RealmSwift */ = {
+		920C39C328B5A86F004B30AF /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 92D4025B28B317670053F2F0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 920C39C028B5A86F004B30AF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		920C39C628B5A88A004B30AF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 920C39C528B5A88A004B30AF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		920C39C928B5A89F004B30AF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 920C39C828B5A89F004B30AF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		920C39CC28B5A8B2004B30AF /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 920C39CB28B5A8B2004B30AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		920C39CF28B5A8C5004B30AF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 920C39CE28B5A8C5004B30AF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		920C39D228B5A8D5004B30AF /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 920C39D128B5A8D5004B30AF /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

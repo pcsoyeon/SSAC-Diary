@@ -80,9 +80,7 @@ class MainViewController: UIViewController {
     // MARK: - @objc
     
     @objc func touchUpPlusButton() {
-        let viewController = UINavigationController(rootViewController: WritingViewController())
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true)
+        transition(WritingViewController(), transitionStyle: .presentFullNavigation)
     }
     
     @objc func touchUpSortButton() {
