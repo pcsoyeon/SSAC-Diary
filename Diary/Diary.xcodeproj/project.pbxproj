@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920C39BF28B5A5E4004B30AF /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920C39BE28B5A5E4004B30AF /* Transition+Extension.swift */; };
 		92126A2028B3833200E43F7E /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92126A1F28B3833200E43F7E /* MainTableViewCell.swift */; };
 		92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F628B284680053F2F0 /* AppDelegate.swift */; };
 		92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F828B284680053F2F0 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		920C39BE28B5A5E4004B30AF /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
 		92126A1F28B3833200E43F7E /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		92D401F328B284680053F2F0 /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D401F628B284680053F2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				92D4023528B28B4D0053F2F0 /* UITextField+Extension.swift */,
 				92D4023728B28C320053F2F0 /* UIView+Extension.swift */,
 				92D4024B28B29E2D0053F2F0 /* URL+Extension.swift */,
+				920C39BE28B5A5E4004B30AF /* Transition+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				92D4024528B29A1F0053F2F0 /* ImageCollectionViewCell.swift in Sources */,
 				92D4023428B28AC20053F2F0 /* DiaryTextField.swift in Sources */,
 				92D401FB28B284680053F2F0 /* MainViewController.swift in Sources */,
+				920C39BF28B5A5E4004B30AF /* Transition+Extension.swift in Sources */,
 				92D4025028B29E9F0053F2F0 /* EndPoint.swift in Sources */,
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
