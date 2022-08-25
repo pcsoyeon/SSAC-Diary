@@ -41,6 +41,7 @@ class BackUpViewController: BaseViewController {
         setConstraints()
         configureButton()
         configureTableView()
+        fetchDocumentZipFile()
     }
     
     private func setConstraints() {
@@ -106,7 +107,7 @@ class BackUpViewController: BaseViewController {
             // ex. 만약 default.realm이 아닌 다른 a.realm을 압축하려고 한다면 오류 발생
         }
         
-        // TODO: -  저장 공간 확인 및 .. 등의 작업 
+        // TODO: -  저장 공간 확인 및 .. 등의 작업
     }
     
     private func showActivityViewController() {
@@ -123,7 +124,10 @@ class BackUpViewController: BaseViewController {
     }
     
     @objc func touchUpRestoreButton() {
-        
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.archive], asCopy: true)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        self.present(documentPicker, animated: true)
     }
 }
 
@@ -137,5 +141,72 @@ extension BackUpViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BackUpListTableViewCell.reuseIdentifier, for: indexPath) as? BackUpListTableViewCell else { return UITableViewCell() }
         return cell
+    }
+}
+
+// MARK: - UIDocumentPicker Protocol
+
+extension BackUpViewController: UIDocumentPickerDelegate {
+    // 창이 사라졌을 때
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print(#function)
+    }
+    
+    // 선택을 했을 때 > 압축파일을 풀어서 데이터 관리
+    // 위에서 다중 선택을 막았기 때문에 배열에 1개만 존재
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        // urls의 첫번째를 통해 어떤 파일을 압축했는지 명시
+        // 파일 앱 압축파일이 있음 > 나의 앱 도큐먼트에 파일을 넣어주는 작업
+        guard let selectedFileURL = urls.first else {
+            showDefaultAlertMessage(title: "선택하신 파일을 찾을 수 없습니다.")
+            return
+        }
+        
+        guard let path = documentDirectoryPath() else {
+            showDefaultAlertMessage(title: "도큐먼트 위치에 오류가 있습니다.")
+            return
+        }
+        
+        let sandboxFileURL = path.appendingPathComponent(selectedFileURL.lastPathComponent) // 경로가 맞는지 확인하는 것이 아니라 단순한 경로를 지정 
+        
+        if FileManager.default.fileExists(atPath: sandboxFileURL.path) {
+            let fileURL = path.appendingPathComponent("SoKyteDiary_1.zip") // sandboxFileURL을 넣어도 됨
+            
+            do {
+                // 1. 어떤 파일을
+                // 2. 어디에 > 도큐먼트에
+                // 3. realm 파일이 나오게 되면 덮어쓰울 것인가? > default.realm 파일에 대치
+                // 4. password 설정할 것인가?
+                // 5. 몇퍼센트 풀렸는지
+                // 6. 압축 해제가 다 되면 어떻게 할 것인가?
+                try Zip.unzipFile(fileURL, destination: path, overwrite: true, password: nil, progress: { progress in
+                    print("progress: \(progress)")
+                }, fileOutputHandler: { unzippedFile in
+                    print("unzippedFile: \(unzippedFile)")
+                    self.showDefaultAlertMessage(title: "복구가 완료되었습니다.")
+                })
+            } catch {
+                showDefaultAlertMessage(title: "압축 해제에 실패했습니다.")
+            }
+            
+        } else { // default에 없다면
+            do {
+                // 파일 앱의 zip -> 도큐먼트 폴더에 복사
+                try FileManager.default.copyItem(at: selectedFileURL, to: sandboxFileURL)
+                
+                // 복사가 끝났다면 압축 해제
+                let fileURL = path.appendingPathComponent("SoKyteDiary_1.zip")
+                
+                try Zip.unzipFile(fileURL, destination: path, overwrite: true, password: nil, progress: { progress in
+                    print("progress: \(progress)")
+                }, fileOutputHandler: { unzippedFile in
+                    print("unzippedFile: \(unzippedFile)")
+                    self.showDefaultAlertMessage(title: "복구가 완료되었습니다.")
+                })
+                
+            } catch {
+                showDefaultAlertMessage(title: "압축 해제에 실패했습니다.")
+            }
+        }
     }
 }

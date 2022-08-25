@@ -48,4 +48,24 @@ extension UIViewController {
             print("file save error", error)
         }
     }
+    
+    func fetchDocumentZipFile() -> [String] {
+        var zipList: [String] = [""]
+        
+        do {
+            guard let path = documentDirectoryPath() else { return zipList }
+            let docs = try FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: nil)
+            print("docs: \(docs)")
+
+            let zip = docs.filter { $0.pathExtension == "zip" } // 확장자가 .zip인 파일을 갖고 올 것
+            print("zip: \(zip)")
+            
+            zipList = zip.map { $0.lastPathComponent }
+            return zipList
+        } catch {
+            print("ERROR")
+        }
+        
+        return zipList
+    }
 }
