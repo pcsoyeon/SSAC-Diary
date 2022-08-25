@@ -61,7 +61,9 @@ class MainViewController: UIViewController {
         
         let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(touchUpSortButton))
         let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(touchUpFilterButton))
-        self.navigationItem.leftBarButtonItems = [sortButton, filterButton]
+        let backUpButton = UIBarButtonItem(title: "백업", style: .plain, target: self, action: #selector(touchUpBackUpButton))
+        
+        self.navigationItem.leftBarButtonItems = [sortButton, filterButton, backUpButton]
     }
     
     private func configureTableView() {
@@ -92,6 +94,10 @@ class MainViewController: UIViewController {
     @objc func touchUpFilterButton() {
         // realm filter query, NSPredicate
         tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '똥'")
+    }
+    
+    @objc func touchUpBackUpButton() {
+        transition(BackUpViewController(), transitionStyle: .push)
     }
 }
 
