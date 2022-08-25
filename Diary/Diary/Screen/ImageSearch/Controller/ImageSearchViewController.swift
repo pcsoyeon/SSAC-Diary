@@ -99,8 +99,6 @@ extension ImageSearchViewController: UICollectionViewDelegate {
             return true
         }
         
-//        selectedImage = cell.imageView.image
-        
         if cell.isSelected {
             isImageSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
@@ -111,6 +109,23 @@ extension ImageSearchViewController: UICollectionViewDelegate {
             return true
         }
     }
+    
+    // MARK: - TODO: 이미지 선택 시, border 설정
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell else { return }
+//        
+//        selectedImage = cell.imageView.image
+//        
+//        cell.layer.borderColor = cell.selectedIndexPath == indexPath ? UIColor.systemPink.cgColor : UIColor.clear.cgColor
+//        cell.layer.borderWidth = cell.selectedIndexPath == indexPath ? 1 : 0
+//        
+//        collectionView.reloadData()
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        
+//    }
 }
 
 extension ImageSearchViewController: UICollectionViewDelegateFlowLayout {

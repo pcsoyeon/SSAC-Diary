@@ -33,7 +33,7 @@ class MainTableViewCell: UITableViewCell {
         $0.dateFormat = "YY.MM.dd"
     }
     
-    private var contentImageView = UIImageView().then {
+    var contentImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
     }
     

@@ -165,6 +165,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseIdentifier) as? MainTableViewCell else { return UITableViewCell() }
         cell.setData(tasks[indexPath.row])
+        cell.contentImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg")
         return cell
     }
 }

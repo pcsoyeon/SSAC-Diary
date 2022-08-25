@@ -128,6 +128,7 @@ final class WritingViewController: BaseViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // Realm + 이미지 도큐먼트 저장
     @objc func touchUpSaveButton() {
         guard let title = writingView.titleTextField.text else { return }
         guard let diaryDate = writingView.subTitleTextField.text else { return }
@@ -147,10 +148,20 @@ final class WritingViewController: BaseViewController {
                                  regDate: Date(),
                                  photo: nil)
             
-            try! localRealm.write {
-                localRealm.add(task)
-                dismiss(animated: true)
+            do {
+                try localRealm.write {
+                    localRealm.add(task)
+                }
+            } catch let error {
+                print(error)
             }
+            
+            // 이미지를 저장해야하는 상황에서만 저장 
+            if let image = writingView.imageView.image {
+                saveImageToDocument(fileName: "\(task.objectId).jpg", image: image)
+            }
+            
+            dismiss(animated: true)
         }
     }
     

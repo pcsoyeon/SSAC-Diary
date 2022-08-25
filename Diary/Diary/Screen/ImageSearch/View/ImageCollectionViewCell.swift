@@ -19,6 +19,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleToFill
     }
     
+    // MARK: - Property
+    
+    var selectedIndexPath: IndexPath?
+    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
