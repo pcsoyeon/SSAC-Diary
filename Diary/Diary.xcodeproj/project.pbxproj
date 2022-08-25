@@ -19,6 +19,7 @@
 		92126A2028B3833200E43F7E /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92126A1F28B3833200E43F7E /* MainTableViewCell.swift */; };
 		92708A9128B6F3FE009D41B3 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */; };
 		92708A9328B6F5E9009D41B3 /* BackUpListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */; };
+		92708A9628B70173009D41B3 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 92708A9528B70173009D41B3 /* Zip */; };
 		92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F628B284680053F2F0 /* AppDelegate.swift */; };
 		92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401F828B284680053F2F0 /* SceneDelegate.swift */; };
 		92D401FB28B284680053F2F0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D401FA28B284680053F2F0 /* MainViewController.swift */; };
@@ -90,6 +91,7 @@
 				920C39D328B5A8D5004B30AF /* Then in Frameworks */,
 				920C39D028B5A8C5004B30AF /* Alamofire in Frameworks */,
 				920C39CD28B5A8B2004B30AF /* SwiftyJSON in Frameworks */,
+				92708A9628B70173009D41B3 /* Zip in Frameworks */,
 				920C39C228B5A86F004B30AF /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +392,7 @@
 				920C39CC28B5A8B2004B30AF /* SwiftyJSON */,
 				920C39CF28B5A8C5004B30AF /* Alamofire */,
 				920C39D228B5A8D5004B30AF /* Then */,
+				92708A9528B70173009D41B3 /* Zip */,
 			);
 			productName = Diary;
 			productReference = 92D401F328B284680053F2F0 /* Diary.app */;
@@ -426,6 +429,7 @@
 				920C39CB28B5A8B2004B30AF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				920C39CE28B5A8C5004B30AF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				920C39D128B5A8D5004B30AF /* XCRemoteSwiftPackageReference "Then" */,
+				92708A9428B70173009D41B3 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 92D401F428B284680053F2F0 /* Products */;
 			projectDirPath = "";
@@ -747,6 +751,14 @@
 				kind = branch;
 			};
 		};
+		92708A9428B70173009D41B3 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -784,6 +796,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 920C39D128B5A8D5004B30AF /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		92708A9528B70173009D41B3 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92708A9428B70173009D41B3 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import Then
+import Zip
 
 class BackUpViewController: BaseViewController {
     
@@ -69,7 +70,56 @@ class BackUpViewController: BaseViewController {
     }
     
     @objc func touchUpBackUpButton() {
+        // 0. 백업할 파일의 URL 배열
+        var urlPaths = [URL]()
         
+        // 1. 도큐먼트 위치에 백업 파일 확인 (파일 매니저를 통해서)
+        // 1.0 도큐먼트에 접근
+        guard let path = documentDirectoryPath() else {
+            showDefaultAlertMessage(title: "도큐먼트 위치에 오류가 있습니다.")
+            return
+        }
+        
+        // 1.1 경로
+        let realmFile = path.appendingPathComponent("default.realm")
+        // 1.2 경로에 파일이 있는지 확인
+        guard FileManager.default.fileExists(atPath: realmFile.path) else {
+            showDefaultAlertMessage(title: "백업할 파일이 없습니다.") // 렘 파일이 없을 수도 있으므로 오류 메시지 출력
+            return
+        }
+        // 1.3 파일이 있다면 urlPath에 추가 (path가 string 타입이므로 url로 변환)
+        if let url = URL(string: realmFile.path) {
+            urlPaths.append(url)
+        }
+        
+        // 2. 백업할 파일이 있다면 파일 압축: URL을 기반으로 압축 만들기
+        // 2.0 import Zip
+        do {
+            let zipFilePath = try Zip.quickZipFiles(urlPaths, fileName: "SoKyteDiary_1")
+            print("Archive Location: \(zipFilePath)")
+            
+            // 3. 압축이 완료가 되면 ActivityViewController 띄우기
+            // 파일을 압축했다면 > Activity Controller 띄우기
+            showActivityViewController()
+        } catch {
+            showDefaultAlertMessage(title: "압축을 실패했습니다")
+            // ex. 만약 default.realm이 아닌 다른 a.realm을 압축하려고 한다면 오류 발생
+        }
+        
+        // TODO: -  저장 공간 확인 및 .. 등의 작업 
+    }
+    
+    private func showActivityViewController() {
+        
+        guard let path = documentDirectoryPath() else {
+            showDefaultAlertMessage(title: "도큐먼트 위치에 오류가 있습니다.")
+            return
+        }
+        
+        let backupFileURL = path.appendingPathComponent("SoKyteDiary_1.zip") // 주의) 확장자까지 작성
+        
+        let viewController = UIActivityViewController(activityItems: [backupFileURL], applicationActivities: [])
+        self.present(viewController, animated: true)
     }
     
     @objc func touchUpRestoreButton() {
