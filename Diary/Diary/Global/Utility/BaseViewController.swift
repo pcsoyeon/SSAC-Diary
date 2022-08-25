@@ -30,4 +30,12 @@ class BaseViewController: UIViewController {
         alert.addAction(rightButton)
         present(alert, animated: true)
     }
+    
+    func showDefaultAlertMessage(title: String, button: String = "확인") {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let okay = UIAlertAction(title: button, style: .default)
+        
+        alert.addAction(okay)
+        present(alert, animated: true)
+    }
 }
