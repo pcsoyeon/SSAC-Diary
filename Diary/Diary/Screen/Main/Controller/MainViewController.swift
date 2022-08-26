@@ -106,24 +106,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-            do {
-                try self.repository.localRealm.write {
-                    // 하나의 레코드에서 특정 컬럼 하나만 변경
-                    self.tasks[indexPath.row].favorite.toggle()
-                    
-                    // 하나의 테이블에 특정 컬럼 전체 값을 변경
-//                    self.tasks.setValue(true, forKey: "favorite")
-                    
-                    // 하나의 레코드에서 여러 컬럼을 변경
-//                    self.localRealm.create(UserDiary.self,
-//                                           value: ["objectId" : self.tasks[indexPath.row].objectId,
-//                                                   "diaryContent" : "내용뿡뿡",
-//                                                   "diaryTitle" : "제목뿡뿡"],
-//                                           update: .modified)
-                }
-            } catch {
-                print("ERROR")
-            }
+            self.repository.updateFavorite(item: self.tasks[indexPath.row])
             
             // reload 방법
             // 1. 스와이프 한 셀 하나만 reload rows 코드 구현 > 상대적으로 효율성

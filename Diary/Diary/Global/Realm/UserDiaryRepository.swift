@@ -27,4 +27,22 @@ class UserDiaryRepository {
     func fetchFilter(filterKey: String) -> Results<UserDiary> {
         return localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '\(filterKey)'")
     }
+    
+    // 5. '좋아요' 적용 함수
+    func updateFavorite(item: UserDiary) {
+        do {
+            try localRealm.write {
+                // 하나의 레코드에서 특정 컬럼 하나만 변경
+                item.favorite.toggle()
+                
+                // 하나의 테이블에 특정 컬럼 전체 값을 변경
+                // self.tasks.setValue(true, forKey: "favorite")
+                
+                // 하나의 레코드에서 여러 컬럼을 변경
+                // localRealm.create(UserDiary.self, value: ["objectId" : self.tasks[indexPath.row].objectId, "diaryContent" : "내용뿡뿡", "diaryTitle" : "제목뿡뿡"],update: .modified)
+            }
+        } catch {
+            print("ERROR")
+        }
+    }
 }
