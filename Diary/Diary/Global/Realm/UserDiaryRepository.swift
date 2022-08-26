@@ -16,6 +16,8 @@ protocol UserDiaryRepositoryType {
     func updateFavorite(item: UserDiary)
     func deleteItem(item: UserDiary)
     func addItem(item: UserDiary)
+    
+    func fetchDate(date: Date) -> Results<UserDiary>
 }
 
 class UserDiaryRepository: UserDiaryRepositoryType {
@@ -82,5 +84,9 @@ class UserDiaryRepository: UserDiaryRepositoryType {
     
     func addItem(item: UserDiary) {
         
+    }
+    
+    func fetchDate(date: Date) -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).filter("diaryDate >= %@ AND diaryDate < %@", date, Date(timeInterval: 86400, since: date)) // 매개변수로 전달받은 date를 기준으로 하루 뒤
     }
 }

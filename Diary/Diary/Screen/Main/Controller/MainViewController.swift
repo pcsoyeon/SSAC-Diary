@@ -7,6 +7,7 @@
 
 import UIKit
 
+import FSCalendar
 import RealmSwift
 import SnapKit
 import Then
@@ -26,7 +27,18 @@ class MainViewController: UIViewController {
     var tasks: Results<UserDiary>! {
         didSet {
             tableView.reloadData()
+            calendar.reloadData()
         }
+    }
+    
+    private lazy var calendar = FSCalendar().then {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .white
+    }
+    
+    private var dateFormatter = DateFormatter().then {
+        $0.dateFormat = "yyMMdd"
     }
     
     // MARK: - Life Cycle
@@ -47,10 +59,16 @@ class MainViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .white
-        view.addSubview(tableView)
+        view.addSubviews([tableView, calendar])
         
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.topMargin.equalTo(300)
+        }
+        
+        calendar.snp.makeConstraints { make in
+            make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(300)
         }
         
         configureNavigationBar()
@@ -152,5 +170,30 @@ extension MainViewController: UITableViewDataSource {
         cell.setData(tasks[indexPath.row])
         cell.contentImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg")
         return cell
+    }
+}
+
+// MARK: - FSCalendar Protocol
+
+extension MainViewController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return repository.fetchDate(date: date).count
+    }
+    
+//    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+//        return nil
+//    }
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        return dateFormatter.string(from: date) == "220907" ? "오프라인" : nil
+    }
+    
+//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+//        return UIImage(systemName: "star.fill")
+//    }
+    
+    // 날짜를 선택했을 때
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        tasks = repository.fetchDate(date: date)
     }
 }
