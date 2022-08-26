@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     
     // MARK: - Property
     
-    let localRealm = try! Realm()
+    let repository = UserDiaryRepository()
     
     var tasks: Results<UserDiary>! {
         didSet {
@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Realm is located at: ", localRealm.configuration.fileURL!)
+        print("Realm is located at: ", repository.localRealm.configuration.fileURL!)
         configureUI()
         configureTableView()
     }
@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
     // MARK: - Custom Method
     
     private func fetchRealmData() {
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
+        tasks = repository.fetch()
     }
     
     // MARK: - @objc
@@ -88,12 +88,12 @@ class MainViewController: UIViewController {
     }
     
     @objc func touchUpSortButton() {
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regDate", ascending: true)
+        tasks = repository.fetchSort(sortKey: "regDate")
     }
     
     @objc func touchUpFilterButton() {
         // realm filter query, NSPredicate
-        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '똥'")
+        tasks = repository.fetchFilter(filterKey: "행복")
     }
     
     @objc func touchUpBackUpButton() {
@@ -107,7 +107,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             do {
-                try self.localRealm.write {
+                try self.repository.localRealm.write {
                     // 하나의 레코드에서 특정 컬럼 하나만 변경
                     self.tasks[indexPath.row].favorite.toggle()
                     
@@ -148,8 +148,8 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             do {
-                try self.localRealm.write {
-                    self.localRealm.delete(self.tasks[indexPath.row])
+                try self.repository.localRealm.write {
+                    self.repository.localRealm.delete(self.tasks[indexPath.row])
                 }
                 
                 self.fetchRealmData()
