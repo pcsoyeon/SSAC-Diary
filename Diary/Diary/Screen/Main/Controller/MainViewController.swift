@@ -88,12 +88,12 @@ class MainViewController: UIViewController {
     }
     
     @objc func touchUpSortButton() {
-        tasks = repository.fetchSort(sortKey: "regDate")
+        tasks = repository.fetchSort("regDate")
     }
     
     @objc func touchUpFilterButton() {
         // realm filter query, NSPredicate
-        tasks = repository.fetchFilter(filterKey: "행복")
+        tasks = repository.fetchFilter("행복")
     }
     
     @objc func touchUpBackUpButton() {

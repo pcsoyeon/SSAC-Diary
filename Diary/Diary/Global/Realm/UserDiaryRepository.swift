@@ -9,7 +9,17 @@ import UIKit
 
 import RealmSwift
 
-class UserDiaryRepository {
+protocol UserDiaryRepositoryType {
+    func fetch() -> Results<UserDiary>
+    func fetchSort(_ sort: String) -> Results<UserDiary>
+    func fetchFilter(_ filter: String) -> Results<UserDiary>
+    func updateFavorite(item: UserDiary)
+    func deleteItem(item: UserDiary)
+    func addItem(item: UserDiary)
+}
+
+class UserDiaryRepository: UserDiaryRepositoryType {
+    
     // 1. local Realm 생성
     let localRealm = try! Realm()
     
@@ -19,13 +29,13 @@ class UserDiaryRepository {
     }
     
     // 3. sort 함수
-    func fetchSort(sortKey: String) -> Results<UserDiary> {
-        return localRealm.objects(UserDiary.self).sorted(byKeyPath: "\(sortKey)", ascending: false)
+    func fetchSort(_ sort: String) -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).sorted(byKeyPath: "\(sort)", ascending: false)
     }
     
     // 4. filter 함수
-    func fetchFilter(filterKey: String) -> Results<UserDiary> {
-        return localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '\(filterKey)'")
+    func fetchFilter(_ filter: String) -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS '\(filter)'")
     }
     
     // 5. '좋아요' 적용 함수
@@ -68,5 +78,9 @@ class UserDiaryRepository {
         } catch let error {
             print(error)
         }
+    }
+    
+    func addItem(item: UserDiary) {
+        
     }
 }
