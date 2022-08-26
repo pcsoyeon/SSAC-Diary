@@ -106,6 +106,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+            
             self.repository.updateFavorite(item: self.tasks[indexPath.row])
             
             // reload 방법
@@ -130,15 +131,10 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
-            do {
-                try self.repository.localRealm.write {
-                    self.repository.localRealm.delete(self.tasks[indexPath.row])
-                }
-                
-                self.fetchRealmData()
-            } catch {
-                print("ERROR")
-            }
+            
+            self.repository.deleteItem(item: self.tasks[indexPath.row])
+            
+            self.fetchRealmData()
         }
         delete.backgroundColor = .red
         

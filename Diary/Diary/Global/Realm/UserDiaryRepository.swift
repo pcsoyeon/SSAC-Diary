@@ -45,4 +45,28 @@ class UserDiaryRepository {
             print("ERROR")
         }
     }
+    
+    // 6. 삭제
+    func deleteItem(item: UserDiary) {
+        do {
+            try localRealm.write {
+                removeImageFromDocument(fileName: "\(item.objectId).jpg")
+                localRealm.delete(item)
+            }
+            
+        } catch {
+            print("ERROR")
+        }
+    }
+    
+    func removeImageFromDocument(fileName: String) {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileURL = documentDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch let error {
+            print(error)
+        }
+    }
 }
