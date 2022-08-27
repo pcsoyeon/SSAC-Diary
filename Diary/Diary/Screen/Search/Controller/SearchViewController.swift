@@ -7,13 +7,25 @@
 
 import UIKit
 
-final class SearchViewController: UIViewController {
+import RealmSwift
+
+final class SearchViewController: BaseViewController {
     
     // MARK: - UI Property
     
     private let searchView = SearchView()
     
     private let searchController = UISearchController(searchResultsController: nil)
+    
+    // MARK: - Property
+    
+    private let repository = UserDiaryRepository()
+    
+    private var tasks: Results<UserDiary>! {
+        didSet {
+            searchView.tableView.reloadData()
+        }
+    }
     
     // MARK: - Life Cycle
     
@@ -23,24 +35,21 @@ final class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        setConstraints()
+        fetchRealmData()
     }
     
     // MARK: - UI Method
     
-    private func configureNavigationBar() {
-        navigationItem.title = "검색"
-        navigationItem.searchController = searchController
-    }
-    
-    private func configureUI() {
+    override func configure() {
         configureNavigationBar()
         configureTableView()
     }
     
-    private func setConstraints() {
-        
+    private func configureNavigationBar() {
+        navigationItem.title = "검색"
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "찾고 싶은 일기 제목을 검색해보세요"
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureTableView() {
@@ -49,18 +58,24 @@ final class SearchViewController: UIViewController {
         
         searchView.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
     }
+    
+    // MARK: - Custom Method
+    
+    private func fetchRealmData() {
+        tasks = repository.fetch()
+    }
 }
 
 // MARK: - UITableView Protocol
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
-        cell.setData("")
+        cell.setData(tasks[indexPath.row].diaryTitle)
         return cell
     }
 }
