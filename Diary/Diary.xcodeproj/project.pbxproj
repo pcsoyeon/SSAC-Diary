@@ -19,6 +19,7 @@
 		926AB5E728BA586A00CC68D6 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 926AB5E628BA586A00CC68D6 /* SwiftyJSON */; };
 		926AB5EA28BA587B00CC68D6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 926AB5E928BA587B00CC68D6 /* SnapKit */; };
 		926AB5ED28BA588A00CC68D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 926AB5EC28BA588A00CC68D6 /* Kingfisher */; };
+		926AB5EF28BA69FA00CC68D6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5EE28BA69FA00CC68D6 /* TabBarController.swift */; };
 		92708A9128B6F3FE009D41B3 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */; };
 		92708A9328B6F5E9009D41B3 /* BackUpListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */; };
 		92708AA028B855F4009D41B3 /* UserDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */; };
@@ -52,6 +53,7 @@
 		920C39BE28B5A5E4004B30AF /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
 		920C39D428B5D26A004B30AF /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		92126A1F28B3833200E43F7E /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		926AB5EE28BA69FA00CC68D6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
 		92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpListTableViewCell.swift; sourceTree = "<group>"; };
 		92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiaryRepository.swift; sourceTree = "<group>"; };
@@ -116,8 +118,23 @@
 			isa = PBXGroup;
 			children = (
 				92D401FA28B284680053F2F0 /* MainViewController.swift */,
+				926AB5EE28BA69FA00CC68D6 /* TabBarController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		926AB5F028BA6EAC00CC68D6 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		926AB5F128BA6EB500CC68D6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		92708A8F28B6F3EF009D41B3 /* BackUp */ = {
@@ -170,6 +187,8 @@
 		92D4020B28B2849C0053F2F0 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				926AB5F128BA6EB500CC68D6 /* Setting */,
+				926AB5F028BA6EAC00CC68D6 /* Search */,
 				92708A8F28B6F3EF009D41B3 /* BackUp */,
 				92D4023C28B2931E0053F2F0 /* ImageSearch */,
 				92D4021728B288050053F2F0 /* Writing */,
@@ -469,6 +488,7 @@
 				92708AA028B855F4009D41B3 /* UserDiaryRepository.swift in Sources */,
 				92D4023628B28B4D0053F2F0 /* UITextField+Extension.swift in Sources */,
 				92D4025728B2A1010053F2F0 /* SearchAPIManager.swift in Sources */,
+				926AB5EF28BA69FA00CC68D6 /* TabBarController.swift in Sources */,
 				92708A9128B6F3FE009D41B3 /* BackUpViewController.swift in Sources */,
 				92708A9328B6F5E9009D41B3 /* BackUpListTableViewCell.swift in Sources */,
 				92D4021C28B288350053F2F0 /* WritingViewController.swift in Sources */,
