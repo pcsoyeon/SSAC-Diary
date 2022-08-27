@@ -24,11 +24,11 @@ class TabBarController: UITabBarController {
         mainViewController.tabBarItem.title = "메인"
         mainViewController.tabBarItem.image = UIImage(systemName: "house")
         
-        let searchViewController = UIViewController()
+        let searchViewController = SearchViewController()
         searchViewController.tabBarItem.title = "검색"
         searchViewController.tabBarItem.image = UIImage(systemName: "star")
         
-        let settingViewController = UIViewController()
+        let settingViewController = SettingViewController()
         settingViewController.tabBarItem.title = "설정"
         settingViewController.tabBarItem.image = UIImage(systemName: "tray")
         

@@ -20,6 +20,10 @@
 		926AB5EA28BA587B00CC68D6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 926AB5E928BA587B00CC68D6 /* SnapKit */; };
 		926AB5ED28BA588A00CC68D6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 926AB5EC28BA588A00CC68D6 /* Kingfisher */; };
 		926AB5EF28BA69FA00CC68D6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5EE28BA69FA00CC68D6 /* TabBarController.swift */; };
+		926AB5F328BA6F7200CC68D6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5F228BA6F7200CC68D6 /* SettingViewController.swift */; };
+		926AB5F528BA6F7E00CC68D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5F428BA6F7E00CC68D6 /* SearchViewController.swift */; };
+		926AB5F928BA706500CC68D6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5F828BA706500CC68D6 /* SettingView.swift */; };
+		926AB5FD28BA717400CC68D6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5FC28BA717400CC68D6 /* SearchView.swift */; };
 		92708A9128B6F3FE009D41B3 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */; };
 		92708A9328B6F5E9009D41B3 /* BackUpListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */; };
 		92708AA028B855F4009D41B3 /* UserDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */; };
@@ -54,6 +58,10 @@
 		920C39D428B5D26A004B30AF /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		92126A1F28B3833200E43F7E /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		926AB5EE28BA69FA00CC68D6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		926AB5F228BA6F7200CC68D6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		926AB5F428BA6F7E00CC68D6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		926AB5F828BA706500CC68D6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		926AB5FC28BA717400CC68D6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
 		92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpListTableViewCell.swift; sourceTree = "<group>"; };
 		92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiaryRepository.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 		926AB5F028BA6EAC00CC68D6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				926AB5FA28BA716000CC68D6 /* View */,
+				926AB5FB28BA716500CC68D6 /* Controller */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -133,8 +143,42 @@
 		926AB5F128BA6EB500CC68D6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				926AB5F628BA704E00CC68D6 /* View */,
+				926AB5F728BA705300CC68D6 /* Controller */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		926AB5F628BA704E00CC68D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				926AB5F828BA706500CC68D6 /* SettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		926AB5F728BA705300CC68D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				926AB5F228BA6F7200CC68D6 /* SettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		926AB5FA28BA716000CC68D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				926AB5FC28BA717400CC68D6 /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		926AB5FB28BA716500CC68D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				926AB5F428BA6F7E00CC68D6 /* SearchViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		92708A8F28B6F3EF009D41B3 /* BackUp */ = {
@@ -500,11 +544,14 @@
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
 				92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */,
+				926AB5FD28BA717400CC68D6 /* SearchView.swift in Sources */,
 				92126A2028B3833200E43F7E /* MainTableViewCell.swift in Sources */,
 				92D4024C28B29E2D0053F2F0 /* URL+Extension.swift in Sources */,
 				92D4024128B293490053F2F0 /* ImageSearchViewController.swift in Sources */,
 				92D4024328B2976A0053F2F0 /* ImageSearchView.swift in Sources */,
+				926AB5F328BA6F7200CC68D6 /* SettingViewController.swift in Sources */,
 				92D4026228B31A0E0053F2F0 /* RealmModel.swift in Sources */,
+				926AB5F928BA706500CC68D6 /* SettingView.swift in Sources */,
 				920C39D528B5D26A004B30AF /* FileManager+Extension.swift in Sources */,
 				92D401F928B284680053F2F0 /* SceneDelegate.swift in Sources */,
 				92D4024828B29AFD0053F2F0 /* ReusableViewProtocol.swift in Sources */,
@@ -512,6 +559,7 @@
 				92D4022E28B289980053F2F0 /* WritingView.swift in Sources */,
 				92D4025428B29F7A0053F2F0 /* APIKey.swift in Sources */,
 				92D4024E28B29E760053F2F0 /* HTTPStatus.swift in Sources */,
+				926AB5F528BA6F7E00CC68D6 /* SearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
