@@ -14,6 +14,10 @@ final class SearchView: BaseView {
     
     // MARK: - UI Property
     
+    var tableView = UITableView().then {
+        $0.backgroundColor = .clear
+    }
+    
     // MARK: - UI Method
     
     override func configureUI() {
@@ -21,6 +25,10 @@ final class SearchView: BaseView {
     }
     
     override func setConstraints() {
+        addSubviews([tableView])
         
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }

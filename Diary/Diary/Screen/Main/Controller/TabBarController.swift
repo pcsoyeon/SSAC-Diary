@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
         mainViewController.tabBarItem.title = "메인"
         mainViewController.tabBarItem.image = UIImage(systemName: "house")
         
-        let searchViewController = SearchViewController()
+        let searchViewController = UINavigationController(rootViewController: SearchViewController())
         searchViewController.tabBarItem.title = "검색"
         searchViewController.tabBarItem.image = UIImage(systemName: "star")
         

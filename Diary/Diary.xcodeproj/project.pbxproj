@@ -24,6 +24,7 @@
 		926AB5F528BA6F7E00CC68D6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5F428BA6F7E00CC68D6 /* SearchViewController.swift */; };
 		926AB5F928BA706500CC68D6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5F828BA706500CC68D6 /* SettingView.swift */; };
 		926AB5FD28BA717400CC68D6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5FC28BA717400CC68D6 /* SearchView.swift */; };
+		926AB5FF28BA75A100CC68D6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AB5FE28BA75A100CC68D6 /* SearchTableViewCell.swift */; };
 		92708A9128B6F3FE009D41B3 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */; };
 		92708A9328B6F5E9009D41B3 /* BackUpListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */; };
 		92708AA028B855F4009D41B3 /* UserDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */; };
@@ -62,6 +63,7 @@
 		926AB5F428BA6F7E00CC68D6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		926AB5F828BA706500CC68D6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		926AB5FC28BA717400CC68D6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		926AB5FE28BA75A100CC68D6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		92708A9028B6F3FE009D41B3 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
 		92708A9228B6F5E9009D41B3 /* BackUpListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpListTableViewCell.swift; sourceTree = "<group>"; };
 		92708A9F28B855F4009D41B3 /* UserDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiaryRepository.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				926AB5FC28BA717400CC68D6 /* SearchView.swift */,
+				926AB5FE28BA75A100CC68D6 /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				920C39BF28B5A5E4004B30AF /* Transition+Extension.swift in Sources */,
 				92D4025028B29E9F0053F2F0 /* EndPoint.swift in Sources */,
 				92D4021528B2854C0053F2F0 /* BaseViewController.swift in Sources */,
+				926AB5FF28BA75A100CC68D6 /* SearchTableViewCell.swift in Sources */,
 				92D401F728B284680053F2F0 /* AppDelegate.swift in Sources */,
 				92D4023128B289CA0053F2F0 /* BaseView.swift in Sources */,
 				926AB5FD28BA717400CC68D6 /* SearchView.swift in Sources */,

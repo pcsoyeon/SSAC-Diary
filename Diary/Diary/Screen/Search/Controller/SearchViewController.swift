@@ -7,11 +7,13 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: UIViewController {
     
     // MARK: - UI Property
     
     private let searchView = SearchView()
+    
+    private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Life Cycle
     
@@ -21,11 +23,44 @@ final class SearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+        setConstraints()
     }
     
     // MARK: - UI Method
     
-    override func configure() {
+    private func configureNavigationBar() {
+        navigationItem.title = "검색"
+        navigationItem.searchController = searchController
+    }
+    
+    private func configureUI() {
+        configureNavigationBar()
+        configureTableView()
+    }
+    
+    private func setConstraints() {
         
+    }
+    
+    private func configureTableView() {
+        searchView.tableView.delegate = self
+        searchView.tableView.dataSource = self
+        
+        searchView.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+    }
+}
+
+// MARK: - UITableView Protocol
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+        cell.setData("")
+        return cell
     }
 }
