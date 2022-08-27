@@ -15,7 +15,9 @@ final class SearchViewController: BaseViewController {
     
     private let searchView = SearchView()
     
-    private let searchController = UISearchController(searchResultsController: nil)
+    private lazy var searchController = UISearchController(searchResultsController: nil).then {
+        $0.searchResultsUpdater = self
+    }
     
     // MARK: - Property
     
@@ -49,6 +51,7 @@ final class SearchViewController: BaseViewController {
         navigationItem.title = "검색"
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "찾고 싶은 일기 제목을 검색해보세요"
+        searchController.searchBar.delegate = self
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -77,5 +80,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         cell.setData(tasks[indexPath.row].diaryTitle)
         return cell
+    }
+}
+
+// MARK: - UISearchBar Protocol
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        tasks = repository.fetchFilter(text)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print(#function)
+        fetchRealmData()
     }
 }
