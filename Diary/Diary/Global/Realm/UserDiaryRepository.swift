@@ -83,7 +83,13 @@ class UserDiaryRepository: UserDiaryRepositoryType {
     }
     
     func addItem(item: UserDiary) {
-        
+        do {
+            try localRealm.write {
+                localRealm.add(item)
+            }
+        } catch let error {
+            print(error)
+        }
     }
     
     func fetchDate(date: Date) -> Results<UserDiary> {

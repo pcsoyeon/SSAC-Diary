@@ -21,7 +21,8 @@ final class WritingViewController: BaseViewController {
     
     // MARK: - Property
     
-    private let localRealm = try! Realm() // 2.
+//    private let localRealm = try! Realm() // 2.
+    private let repository = UserDiaryRepository()
     
     private let dateFormatter = DateFormatter().then {
         $0.dateFormat = "YYYY.MM.dd"
@@ -41,7 +42,7 @@ final class WritingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Realm is located at: ", localRealm.configuration.fileURL!)
+        print("Realm is located at: ", repository.localRealm.configuration.fileURL!)
     }
     
     // MARK: - UI Method
@@ -148,13 +149,7 @@ final class WritingViewController: BaseViewController {
                                  regDate: Date(),
                                  photo: nil)
             
-            do {
-                try localRealm.write {
-                    localRealm.add(task)
-                }
-            } catch let error {
-                print(error)
-            }
+            repository.addItem(item: task)
             
             // 이미지를 저장해야하는 상황에서만 저장 
             if let image = writingView.imageView.image {
